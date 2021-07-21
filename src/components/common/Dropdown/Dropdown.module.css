@@ -1,0 +1,35 @@
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    border: 1px solid #DBDBDB;
+    border-radius: 4px;
+}
+
+.dropdownOpen .dropdownHeader{
+    border-bottom: 1px solid #DBDBDB;
+}
+
+.dropdownHeader, .dropdownItem{
+    background: white;
+    border: none;
+    cursor: pointer;
+    padding: 6px 8px;
+    text-align: left;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.dropdownItem:hover{
+    background: #F5F5F5;
+}
+
+.dropdownItemActive {
+    color: #1976D2;
+    background-color: #E8F2FC;
+}
+
+.dropdownList {
+    display: flex;
+    flex-direction: column;
+}

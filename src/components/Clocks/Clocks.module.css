@@ -1,0 +1,12 @@
+.clocksWrapper{
+    padding: 100px 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -40px;
+    margin-top: -40px;
+}
+
+.clockItem{
+    margin-left: 40px;
+    margin-top: 40px;
+}
