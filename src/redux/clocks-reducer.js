@@ -2,7 +2,8 @@ import {clocksApi} from "../api/api";
 
 const SET_CURRENT_TIME = 'SET_CURRENT_TIME',
     SET_TIMEZONES = 'SET_TIMEZONES',
-    SET_CLOCK_TIMEZONE = 'SET_CLOCK_TIMEZONE'
+    SET_CLOCK_TIMEZONE = 'SET_CLOCK_TIMEZONE',
+    TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
     utcHours: null,
@@ -20,7 +21,8 @@ let initialState = {
             timezone: null,
             name: ""
         }
-    ]
+    ],
+    isFetching: false
 }
 
 const clocksReducer = (state = initialState, action) => {
@@ -50,6 +52,8 @@ const clocksReducer = (state = initialState, action) => {
                 ...state,
                 clocks: [...state.clocks, clock]
             }
+        case TOGGLE_IS_FETCHING:
+            return {...state, isFetching: action.isFetching}
         default:
             return state;
     }
@@ -58,6 +62,7 @@ const clocksReducer = (state = initialState, action) => {
 export const setCurrentTime = (hours, minutes, seconds) => ({type: SET_CURRENT_TIME, hours, minutes, seconds});
 export const setTimezones = (timezones) => ({type: SET_TIMEZONES, timezones});
 export const setClockTimezone = (id, timezoneName) => ({type: SET_CLOCK_TIMEZONE, id, timezoneName})
+export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
 
 export const getCurrentTime = () => (dispatch) => {
     let day = new Date();
@@ -65,8 +70,10 @@ export const getCurrentTime = () => (dispatch) => {
 }
 
 export const getTimezones = () => async (dispatch) => {
+    dispatch(toggleIsFetching(true));
     const response = await clocksApi.getTimezones();
     dispatch(setTimezones(response));
+    dispatch(toggleIsFetching(false));
 }
 
 export const changeClockTimezone = (clockId, timezoneName) => (dispatch) => {
