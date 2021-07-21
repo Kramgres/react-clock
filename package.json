@@ -34,12 +34,15 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "Firefox > 52",
+      "Chrome > 57",
+      "Opera > 44"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "Firefox > 52",
+      "Chrome > 57",
+      "Opera > 44"
     ]
   }
 }
