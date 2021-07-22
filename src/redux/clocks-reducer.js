@@ -11,7 +11,12 @@ let initialState = {
     utcSeconds: null,
     clocks: [
         {
-            id: null,
+            id: 1,
+            timezone: null,
+            timezoneName: ""
+        },
+        {
+            id: 2,
             timezone: null,
             timezoneName: ""
         }
@@ -41,16 +46,12 @@ const clocksReducer = (state = initialState, action) => {
             }
         case SET_CLOCK_TIMEZONE:
             let clock = state.clocks.find(c => c.id === action.id);
-            if (!clock){
-                clock = {};
-                clock.id = action.id
-            }
             clock.timezone = state.timezones.find(t => t.name === action.timezoneName)?.timezone;
             clock.timezoneName = action.timezoneName;
 
             return {
                 ...state,
-                clocks: [...state.clocks, clock]
+                clocks: [...state.clocks]
             }
         case TOGGLE_IS_FETCHING:
             return {...state, isFetching: action.isFetching}

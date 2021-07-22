@@ -3,10 +3,9 @@ import DigitClock from "./DigitClock/DigitClock";
 import Dropdown from "../../common/Dropdown/Dropdown";
 import {useEffect} from "react";
 
-const Clock = ({id, utcHours, utcMinutes, utcSeconds, clocks, timezones, changeClockTimezone}) => {
+const Clock = ({id, utcHours, utcMinutes, utcSeconds, currentTimezone, timezones, changeClockTimezone}) => {
 
-    const currentTimezone = clocks.find(c => c.id === id)?.timezone,
-        hours = utcHours+ +currentTimezone,
+    const hours = utcHours + +currentTimezone,
         minutes = utcMinutes,
         seconds = utcSeconds,
         timezonesNames = timezones.map(t => t.name),

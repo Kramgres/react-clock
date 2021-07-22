@@ -11,24 +11,19 @@ const Clocks = ({utcHours, utcMinutes, utcSeconds, timezones, clocks, getCurrent
     return (
         <div className="container">
             <div className={styles.clocksWrapper}>
-                <div className={styles.clockItem}>
-                    <Clock id={1}
-                           utcHours={utcHours}
-                           utcMinutes={utcMinutes}
-                           utcSeconds={utcSeconds}
-                           clocks={clocks}
-                           timezones={timezones}
-                           changeClockTimezone={changeClockTimezone}/>
-                </div>
-                <div className={styles.clockItem}>
-                    <Clock id={2}
-                           utcHours={utcHours}
-                           utcMinutes={utcMinutes}
-                           utcSeconds={utcSeconds}
-                           clocks={clocks}
-                           timezones={timezones}
-                           changeClockTimezone={changeClockTimezone}/>
-                </div>
+                {
+                    clocks.map(c =>
+                        <div key={c.id} className={styles.clockItem}>
+                            <Clock id={c.id}
+                                   utcHours={utcHours}
+                                   utcMinutes={utcMinutes}
+                                   utcSeconds={utcSeconds}
+                                   currentTimezone={c.timezone}
+                                   timezones={timezones}
+                                   changeClockTimezone={changeClockTimezone}/>
+                        </div>
+                    )
+                }
             </div>
         </div>
     )
